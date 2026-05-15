@@ -1,5 +1,7 @@
 # wwebjmineflayer
 
+<p align="right"><a href="README.md">Español</a></p>
+
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat)
 ![License](https://img.shields.io/badge/License-ISC-blue?style=flat)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-62B47A?style=flat)
@@ -7,15 +9,9 @@
 
 Control a **Minecraft** bot (Mineflayer) from **WhatsApp** using voice messages.
 
-> **Default language:** [README.md](README.md) (Spanish)
-
 ## Language support
 
-**Not limited to Spanish.**
-
-- **Gemini** transcribes audio in [many languages](https://ai.google.dev/gemini-api/docs/models).
-- **Built-in commands** use Spanish-tuned keyword rules; similar phrases in other languages often work after transcription.
-- **Ollama** handles unusual requests; pick a model that understands your language.
+Gemini transcribes audio in [multiple languages](https://ai.google.dev/gemini-api/docs/models). Built-in commands are tuned for Spanish; other languages often work once transcribed. For complex requests, use an Ollama model suited to your language.
 
 ## How it works
 

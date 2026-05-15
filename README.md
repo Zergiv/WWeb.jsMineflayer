@@ -1,5 +1,7 @@
 # wwebjmineflayer
 
+<p align="right"><a href="README.en.md">English</a></p>
+
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat)
 ![License](https://img.shields.io/badge/License-ISC-blue?style=flat)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-62B47A?style=flat)
@@ -9,15 +11,9 @@ Controla un bot de **Minecraft** (Mineflayer) desde **WhatsApp** con mensajes de
 
 Escaneas el QR, activas el modo, mandas audios con órdenes y el personaje obedece en el servidor.
 
-> **English (optional):** [README.en.md](README.en.md)
+## Soporte de idiomas
 
-## Idiomas
-
-**No está limitado al español.**
-
-- **Gemini** transcribe audio en [muchos idiomas](https://ai.google.dev/gemini-api/docs/models): español, inglés, etc.
-- Las **órdenes integradas** (seguir, parar, madera, atacar) usan reglas con ejemplos en español, pero frases parecidas en otros idiomas suelen funcionar tras la transcripción.
-- **Ollama** resuelve peticiones raras; elige un modelo que entienda el idioma en el que hables.
+Gemini transcribe audio en [múltiples idiomas](https://ai.google.dev/gemini-api/docs/models). Las órdenes integradas están optimizadas en español; otras lenguas suelen funcionar tras la transcripción. Para peticiones complejas, configura en Ollama un modelo acorde al idioma que uses.
 
 ## Qué hace
 
