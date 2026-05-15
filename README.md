@@ -1,103 +1,97 @@
 # wwebjmineflayer
 
-**English** · [Español](README.es.md)
-
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat)
 ![License](https://img.shields.io/badge/License-ISC-blue?style=flat)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-62B47A?style=flat)
 ![Made with AI](https://img.shields.io/badge/Made%20with-AI-8B5CF6?style=flat)
 
-Control a **Minecraft** bot (Mineflayer) from **WhatsApp** using voice messages.
+Controla un bot de **Minecraft** (Mineflayer) desde **WhatsApp** con mensajes de voz.
 
-Scan the QR code, enable voice mode, send audio commands, and your in-game character follows, stops, chops wood, fights mobs, and more.
+Escaneas el QR, activas el modo, mandas audios con órdenes y el personaje obedece en el servidor.
 
-## Language support
+> **English (optional):** [README.en.md](README.en.md)
 
-**You are not limited to Spanish.**
+## Idiomas
 
-- **Gemini** transcribes audio in [many languages](https://ai.google.dev/gemini-api/docs/models) — speak in English, Spanish, or whatever Gemini supports.
-- **Built-in commands** (follow, stop, wood, attack) use keyword rules tuned with Spanish examples, but similar phrases in other languages often work once transcribed.
-- **Ollama** handles unusual requests; pick a model that understands the language you speak.
+**No está limitado al español.**
 
-## How it works
+- **Gemini** transcribe audio en [muchos idiomas](https://ai.google.dev/gemini-api/docs/models): español, inglés, etc.
+- Las **órdenes integradas** (seguir, parar, madera, atacar) usan reglas con ejemplos en español, pero frases parecidas en otros idiomas suelen funcionar tras la transcripción.
+- **Ollama** resuelve peticiones raras; elige un modelo que entienda el idioma en el que hables.
 
-1. **WhatsApp** (`whatsapp-web.js`) accepts voice notes from your whitelisted number only.
-2. **Gemini** turns audio into text.
-3. Common orders run via built-in rules (no LLM).
-4. Complex orders go through **Ollama**, which generates sandboxed Mineflayer code.
+## Qué hace
 
-## Requirements
+1. **WhatsApp** recibe audios solo del número que configures.
+2. **Gemini** convierte el audio en texto.
+3. Órdenes habituales → reglas integradas (sin LLM).
+4. Órdenes raras → **Ollama** genera código Mineflayer acotado.
 
-- [Node.js](https://nodejs.org/) 18 or newer
-- **Minecraft 1.20.1** server (offline / LAN is fine)
-- [Ollama](https://ollama.com/) — **model depends on your hardware** (see below)
-- [Google AI Studio](https://aistudio.google.com/apikey) API key (Gemini transcription)
-- WhatsApp on your phone to link the session (QR)
+## Requisitos
 
-### Choosing an Ollama model
+- [Node.js](https://nodejs.org/) 18 o superior
+- Servidor **Minecraft 1.20.1** (offline / LAN vale)
+- [Ollama](https://ollama.com/) — **el modelo depende de tu equipo** (abajo)
+- API key de [Google AI Studio](https://aistudio.google.com/apikey)
+- WhatsApp en el móvil para vincular (QR)
 
-There is no single required model. Use whatever fits **your CPU, RAM, and GPU**:
+### Qué modelo de Ollama usar
 
-| Your setup | Suggestion |
-|------------|------------|
-| 8 GB RAM, no GPU | `llama3.2:3b` or similar small model |
-| 16 GB RAM | `llama3.1:8b` (default in `.env.example`) |
-| GPU + 16 GB+ VRAM | `llama3.1:8b` or larger if it runs smoothly |
+No hay un modelo obligatorio. Usa el que puedas ejecutar según **RAM, CPU y GPU**:
 
-Set `OLLAMA_MODEL` in `.env`. If CUDA fails, use `OLLAMA_NUM_GPU=0` for CPU-only.
+| Tu PC | Sugerencia |
+|-------|------------|
+| 8 GB RAM, sin GPU | `llama3.2:3b` u otro pequeño |
+| 16 GB RAM | `llama3.1:8b` (por defecto en `.env.example`) |
+| GPU con VRAM suficiente | `llama3.1:8b` o mayor si va fluido |
 
-Verify with:
+Configura `OLLAMA_MODEL` en `.env`. Si falla CUDA: `OLLAMA_NUM_GPU=0`.
 
 ```bash
 npm run ollama:check
 ```
 
-## Installation
+## Instalación
 
 ```bash
-git clone https://github.com/YOUR_USER/wwebjmineflayer.git
+git clone https://github.com/TU_USUARIO/wwebjmineflayer.git
 cd wwebjmineflayer
 npm install
 cp .env.example .env
 ```
 
-Edit `.env` with your values — **never commit `.env`**:
+Edita `.env` (nunca lo subas al repo):
 
-| Variable | Description |
+| Variable | Descripción |
 |----------|-------------|
-| `ALLOWED_PHONE` | Your phone number, international format without `+` |
-| `GEMINI_API_KEY` | Gemini API key |
-| `GEMINI_TRANSCRIBE_MODEL` | Default: `gemini-3.1-flash-lite-preview` |
-| `OLLAMA_MODEL` | Any model you can run locally |
-| `MC_HOST` / `MC_PORT` | Server address |
-| `MC_USERNAME` | Bot username in-game |
-| `OLLAMA_NUM_GPU` | `0` to force CPU if GPU/CUDA fails |
+| `ALLOWED_PHONE` | Tu número sin `+` |
+| `GEMINI_API_KEY` | Clave Gemini |
+| `GEMINI_TRANSCRIBE_MODEL` | Por defecto `gemini-3.1-flash-lite-preview` |
+| `OLLAMA_MODEL` | El que puedas correr en tu máquina |
+| `MC_HOST` / `MC_PORT` | Servidor |
+| `MC_USERNAME` | Nombre del bot |
+| `OLLAMA_NUM_GPU` | `0` si CUDA falla |
 
-## Usage
-
-**Quick start**
+## Uso
 
 ```bash
 npm start
 ```
 
-Scan the QR in the terminal. In WhatsApp:
-
-| Command | Action |
+| Comando | Acción |
 |---------|--------|
-| `!ping` | Check the bot is alive |
-| `!mineflayer` | Toggle voice → Minecraft mode |
-| `!estado` | MC, Gemini, and Ollama status |
+| `!ping` | Comprueba respuesta |
+| `!mineflayer` | Activa / desactiva modo voz |
+| `!estado` | Estado MC, Gemini, Ollama |
 
-With mode enabled, send **voice notes**, for example:
+Con el modo activo, envía **notas de voz**, por ejemplo:
 
-- “Follow me” / “Stop”
-- “Collect wood”
-- “Kill zombies” / “Attack animals”
+- «Sígueme» / «Para»
+- «Recolecta madera»
+- «Mata zombies» / «Ataca animales»
 
-(Spanish works too: “sígueme”, “para”, “recolecta madera”, etc.)
+(También en inglés: “follow me”, “stop”, “collect wood”, etc.)
 
-**Production (PM2)**
+**PM2**
 
 ```bash
 npm run pm2:start
@@ -105,25 +99,23 @@ npm run pm2:logs
 npm run pm2:restart
 ```
 
-## Project layout
+## Estructura
 
 ```
-main.js                 # WhatsApp client
-src/
-  handlers/             # Voice + ! commands
-  minecraft/            # Bot, intents, actions
-  services/             # Gemini, Ollama
-  auth/                 # Phone whitelist
-ecosystem.config.cjs    # PM2
+main.js
+src/handlers/      # Voz y comandos !
+src/minecraft/       # Bot, intenciones, acciones
+src/services/        # Gemini, Ollama
+ecosystem.config.cjs
 ```
 
-## Notes
+## Notas
 
-- The bot must be on the **same server** as you and nearby to follow you.
-- Gemini **free tier** has rate limits (HTTP 429); wait and retry.
-- WhatsApp Web is not an official API — use at your own risk.
-- Do **not** share `.env`, `.wwebjs_auth/`, or API keys.
+- Mismo servidor que tú y cerca para seguirte.
+- Cuota gratuita de Gemini (error 429): espera y reintenta.
+- WhatsApp Web no es API oficial.
+- No compartas `.env` ni `.wwebjs_auth/`.
 
-## License
+## Licencia
 
 ISC
