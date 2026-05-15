@@ -1,0 +1,33 @@
+{
+  "name": "wwebjmineflayer",
+  "version": "1.0.0",
+  "description": "Controla un bot de Minecraft desde WhatsApp con voz en español",
+  "main": "main.js",
+  "scripts": {
+    "start": "node .",
+    "pm2:start": "npx pm2 start ecosystem.config.cjs",
+    "pm2:stop": "node scripts/pm2-stop.js",
+    "pm2:restart": "node scripts/pm2-restart.js",
+    "pm2:delete": "npx pm2 delete wwebj-bot wwebj-whisper",
+    "pm2:logs": "npx pm2 logs wwebj-bot",
+    "pm2:status": "npx pm2 status",
+    "pm2:save": "npx pm2 save",
+    "ollama:check": "node scripts/ollama-check.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "pm2": "^6.0.14"
+  },
+  "dependencies": {
+    "@google/genai": "^2.3.0",
+    "dotenv": "^17.4.2",
+    "mineflayer": "^4.37.1",
+    "mineflayer-pathfinder": "^2.4.5",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.34.7"
+  }
+}
